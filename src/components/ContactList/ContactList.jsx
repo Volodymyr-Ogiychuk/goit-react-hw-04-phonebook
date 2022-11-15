@@ -1,15 +1,8 @@
 import PropTypes from 'prop-types'
 import s from './ContactList.module.css'
-import React, {Component} from 'react';
+import React from 'react';
 
-export class ContactList extends Component {
-
-    componentDidUpdate() {
-    localStorage.setItem('cntcts', JSON.stringify(this.props.contacts));
-}
-
-render() {
-    const { contacts, deleteContact } = this.props;
+const ContactList = ({ contacts, deleteContact }) => {
 
 return (
     <ul className={s.list}>
@@ -21,7 +14,7 @@ return (
         ))}
 
     </ul>
-)}};
+)};
 
 ContactList.propTypes = {
     contacts: PropTypes.array.isRequired,

@@ -26,7 +26,8 @@ const App = () => {
     ) {
       alert(`${dataContact.name} is already in contacts`);
     } else {
-      setContacts([contact, ...contacts])
+      setContacts([contact, ...contacts]);
+      localStorage.setItem('cntcts', JSON.stringify(contacts));
     }
   }
 
