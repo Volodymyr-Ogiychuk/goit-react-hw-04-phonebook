@@ -6,14 +6,12 @@ import ContactList from './ContactList/ContactList'
 import { nanoid } from "nanoid";
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(()=> JSON.parse(localStorage.getItem('cntcts')) ?? []);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    if (localStorage.getItem('cntcts')) {
-    setContacts([...JSON.parse(localStorage.getItem('cntcts'))])
-  };
-  }, []);
+   localStorage.setItem('cntcts', JSON.stringify(contacts))
+  }, [contacts]);
   
   const addContact = (dataContact) => {
     const contact = {
@@ -27,7 +25,6 @@ const App = () => {
       alert(`${dataContact.name} is already in contacts`);
     } else {
       setContacts([contact, ...contacts]);
-      localStorage.setItem('cntcts', JSON.stringify(contacts));
     }
   }
 
